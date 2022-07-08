@@ -36,7 +36,7 @@ export class EditMovieComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe((params) => {
       this.id = params['id'];
     });
-    this.movie = await this.movieservice.getMovieByID(this.id);
+    this.movie = await this.movieservice.getMovieById(this.id);
     this.movieName.setValue(this.movie.movieName);
     this.movieDescription.setValue(this.movie.movieDescription);
     this.duration.setValue(this.movie.duration);

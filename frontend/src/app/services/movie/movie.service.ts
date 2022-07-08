@@ -36,12 +36,7 @@ export class MovieService {
     return this.http.delete(`${this.apiUrl}/movie/${movieID}`).toPromise();
   }
 
-  // Admin Get Movie By ID
-  getMovieByID(movieID: string): Promise<movie> {
-    return this.http.get<movie>(`${this.apiUrl}/movie/${movieID}`).toPromise();
-  }
-
-  // Member Get Movie By ID
+  // Get Movie By ID
   getMovieById(movieID: String): Promise<movie> {
     return this.http
       .get<movie>(`${this.apiUrl}/movie/${movieID}`)
