@@ -1,7 +1,6 @@
-import { HttpClient, HttpEvent, HttpErrorResponse, HttpEventType } from '@angular/common/http'; import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http'; import { Injectable } from '@angular/core';
 import { movie } from 'src/app/models/movie/movie';
 import { environment } from 'src/environments/environment';
-import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,8 +12,7 @@ export class MovieService {
 
   //Get Movie List
   getMovieList(): Promise<movie[]> {
-    let movies = this.http.get<movie[]>(`${this.apiUrl}/movie`).toPromise();
-    return movies;
+    return this.http.get<movie[]>(`${this.apiUrl}/movie`).toPromise();
   }
 
   //Admin Insert Movie List
@@ -25,16 +23,12 @@ export class MovieService {
     uploadData.append('movieDescription', movieDescription);
     uploadData.append('duration', duration as any);
     uploadData.append('ticketPrice', ticketPrice as any);
-    let uploadURL = this.http.post(`${this.apiUrl}/movie`, uploadData).toPromise() as any;
-    console.log(uploadURL);
-    return uploadURL;
+    return this.http.post(`${this.apiUrl}/movie`, uploadData).toPromise() as any;
   }
 
   // Admin Update Movie 
   updateMovie(movieID: string, movieName: string, movieDescription: string, duration: number, ticketPrice: number): Promise<any> {
-    let result = this.http.put(`${this.apiUrl}/movie/${movieID}`, { movieName, movieDescription, duration, ticketPrice }).toPromise();
-    console.log(result);
-    return result;
+    return this.http.put(`${this.apiUrl}/movie/${movieID}`, { movieName, movieDescription, duration, ticketPrice }).toPromise();;
   }
 
   // Admin Delete Movie
