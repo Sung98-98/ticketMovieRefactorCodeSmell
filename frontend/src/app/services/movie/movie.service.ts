@@ -10,12 +10,10 @@ export class MovieService {
   constructor(private http: HttpClient) {
   }
 
-  //Get Movie List
   getMovieList(): Promise<movie[]> {
     return this.http.get<movie[]>(`${this.apiUrl}/movie`).toPromise();
   }
 
-  //Admin Insert Movie List
   addMovie(movieName: string, movieDescription: string, file: File, duration: number, ticketPrice: number){
     const uploadData = new FormData();
     uploadData.append('image', file)
@@ -26,17 +24,14 @@ export class MovieService {
     return this.http.post(`${this.apiUrl}/movie`, uploadData).toPromise() as any;
   }
 
-  // Admin Update Movie 
   updateMovie(movieID: string, movieName: string, movieDescription: string, duration: number, ticketPrice: number): Promise<any> {
     return this.http.put(`${this.apiUrl}/movie/${movieID}`, { movieName, movieDescription, duration, ticketPrice }).toPromise();;
   }
 
-  // Admin Delete Movie
   deleteMovie(movieID: string): Promise<any> {
     return this.http.delete(`${this.apiUrl}/movie/${movieID}`).toPromise();
   }
 
-  // Get Movie By ID
   getMovieById(movieID: String): Promise<movie> {
     return this.http
       .get<movie>(`${this.apiUrl}/movie/${movieID}`)
